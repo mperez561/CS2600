@@ -10,7 +10,7 @@
     int book_id;
 };
 
-    /* function declaration */
+/* function declaration */
 void printBook(struct Books *book); // INPUT a pointer
 
 int main()
