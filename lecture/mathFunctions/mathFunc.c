@@ -26,7 +26,7 @@
 
  
 
-#include "MathFunc.h" 
+#include "mathFunc.h" 
 
   
 

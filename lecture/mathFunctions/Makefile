@@ -1,5 +1,16 @@
 CC=gcc
-CFLAGS=-L. -lmath
+CFLAGS=-L. -lmathFuncDLL
+DLLFLAGS=-fPIC --shared
+
+ifeq ($(OS),Windows_NT)
+	DELETE=del
+else
+	DELETE=rm
+	ifeq ($(UNAME_$),Darwin)
+		CFLAGS += -D OSX
+	else DELETE=rm
+	endif
+endif
 
 all: mathProgram
 
@@ -8,12 +19,12 @@ mathFuncMain.o: mathFuncMain.c
 
 mathFunc.o: mathFunc.c	
 	$(CC) -c mathFunc.c
-	
-libMath.a: mathFunc.o
-	ar -rc libMath.a mathFunc.o
 
-mathProgram: libMath.a
+mathFuncDLL.dll: mathFunc.c
+	$(CC) $(CFLAGS) -o mathFuncDLL.dll mathFunc.c
+
+mathProgram: mathFuncDLL.dll
 	$(CC) $(CFLAGS) -c mathFuncMain.c -o mathProgram
 
 clean:
-	rm mathProgram *.o *.a
+	DELETE mathProgram *.o *.a

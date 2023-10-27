@@ -1,6 +1,6 @@
 #include <stdio.h> 
 
-#include "MathFunc.h" 
+#include "mathFunc.h" 
 
    
 
